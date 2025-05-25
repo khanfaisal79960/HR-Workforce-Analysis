@@ -46,14 +46,14 @@
 
 <ol>
   <li><strong>Clone the Repository</strong>
-    <pre><code>gh repo clone khanfaisal79960/HR-Workforce-Analysis
+    <pre><code>git clone khanfaisal79960/HR-Workforce-Analysis
 cd HR-Workforce-Analysis</code></pre>
   </li>
   <li><strong>Install Power BI</strong><br>
     Download and install <a href="https://powerbi.microsoft.com/desktop/" target="_blank">Power BI Desktop</a> if you haven't already.
   </li>
   <li><strong>Open the Report</strong><br>
-    Open the <code>bank_loan_data_insights.pbix</code> file using Power BI to explore the report offline.
+    Open the <code>analysis/hranalytics_insights_dashboard.pbix</code> file using Power BI to explore the report offline.
   </li>
 </ol>
 
@@ -67,12 +67,6 @@ cd HR-Workforce-Analysis</code></pre>
   <li>📋 <strong>Advanced Excel</strong> – for initial data preprocessing</li>
   <li>🔢 <strong>DAX</strong> – for data modeling and KPIs in Power BI</li>
 </ul>
-
-<hr>
-
-
-
-
 
 <hr>
 
