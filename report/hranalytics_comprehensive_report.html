@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Attrition Analytics Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Georgia&family=Merriweather&display=swap');
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+        }
+        img {
+            height: 100%;
+            width: 100%;
+        }
+        .report-container {
+            width: 8.5in; /* Standard letter size width */
+            min-height: 11in; /* Standard letter size height */
+            padding: 1in;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            color: #333;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: #2c3e50;
+            margin-bottom: 0.5em;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.2em;
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.6em;
+            margin-top: 1.5em;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-size: 1.2em;
+            margin-top: 1em;
+            color: #555;
+        }
+        h4 {
+            font-size: 1.1em;
+            margin-top: 0.8em;
+            color: #666;
+        }
+        p {
+            margin-bottom: 1em;
+            text-align: justify;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 1em;
+        }
+        .section-data {
+            background-color: #f9f9f9;
+            border-left: 5px solid #007bff;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .section-data ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .section-data li {
+            margin-bottom: 8px;
+        }
+        .conclusion {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-family: 'Merriweather', serif;
+        }
+        .chart-placeholder {
+            width: 100%; /* Or a specific pixel width like 600px */
+            height: 300px; /* Adjust height as needed */
+            background-color: #e9e9e9;
+            border: 1px dashed #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #888;
+            font-style: italic;
+            margin: 15px 0;
+            text-align: center;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .chart-placeholder img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .cover h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+    .cover p {
+      font-size: 1.2em;
+    }
+    </style>
+</head>
+<body>
+ 
+    <div class="report-container">
+        <div class="cover">
+    <h1>HR Workforce Analysis Report</h1>
+    <p>Comprehensive analysis of Workforce Dynamics</p>
+    <p><strong>Date:</strong> May 24, 2025</p>
+    <p><strong>Prepared by:</strong> Khan Faisal</p>
+  </div>
+        <h1>HR Attrition Analytics Report</h1>
+        <p><strong>Date:</strong> May 25, 2025</p>
+
+        <h2>Executive Summary</h2>
+        <p>
+            This report provides a comprehensive analysis of employee attrition within the organization, leveraging the HR Analytics dataset. The primary goal is to identify key drivers of attrition, understand underlying patterns, and propose actionable strategies for retention. Our findings indicate that attrition is significantly influenced by factors such as lower monthly income, shorter tenure, specific job roles and education fields, and demographic attributes like age, gender, and marital status. Notably, even employees reporting high job satisfaction are attriting, suggesting a need for a holistic review of employee experience beyond satisfaction scores.
+        </p>
+
+        <h3>Key Findings:</h3>
+        <ul>
+            <li>**Income & Tenure:** The "Upto $5,000" monthly income group and employees with shorter tenure experience the highest attrition rates.</li>
+            <li>**Demographics:** Younger employees (late 20s to early 30s), male employees, and single employees show higher propensity for attrition.</li>
+            <li>**Role & Education:** Research Scientists, Laboratory Technicians, Manufacturing Directors, and individuals from Life Sciences and Medical education backgrounds have elevated attrition figures.</li>
+            <li>**Job Satisfaction Paradox:** A significant number of attritions occur even among employees with "High" job satisfaction, indicating that satisfaction alone is not a complete predictor of retention.</li>
+        </ul>
+
+        <h3>Recommendations:</h3>
+        <ul>
+            <li>Implement targeted compensation reviews and enhanced early-career development programs.</li>
+            <li>Develop specific retention strategies for high-attrition roles and education fields.</li>
+            <li>Conduct deeper qualitative research into gender-specific and marital status-related attrition factors.</li>
+            <li>Investigate non-satisfaction drivers of attrition to create a more comprehensive employee experience strategy.</li>
+        </ul>
+
+        <h2>Introduction</h2>
+        <h3>Objective of the Report</h3>
+        <p>
+            The objective of this report is to conduct an in-depth analysis of employee attrition using the provided HR dataset. By identifying the primary drivers and patterns of attrition, this report aims to furnish Human Resources and management with data-driven insights necessary for developing effective retention strategies, improving employee engagement, and fostering a stable workforce.
+        </p>
+
+        <h3>Background / Context</h3>
+        <p>
+            Employee attrition poses significant challenges to organizations, including increased recruitment costs, loss of institutional knowledge, and potential impacts on team morale and productivity. Understanding the root causes of why employees leave is crucial for proactive HR management. This report serves as a foundational step in building a robust HR analytics capability focused on talent retention.
+        </p>
+
+        <h2>Data Overview</h2>
+        <h3>Data Sources</h3>
+        <p>
+            The analysis presented in this report is based on the <code>HR_Analytics.csv</code> dataset provided.
+        </p>
+
+        <h3>Data Collection Methods</h3>
+        <p>
+            The dataset was provided as a pre-collected CSV file. The specific methods used for the original data collection are assumed to be standard HR data gathering practices within an organizational context.
+        </p>
+
+        <h3>Data Cleaning and Preparation</h3>
+        <p>
+            For the purpose of this analysis, it is assumed that the provided <code>HR_Analytics.csv</code> dataset has undergone initial data cleaning and preparation, ensuring data integrity and readiness for analytical processing. This includes handling missing values, standardizing formats, and ensuring data types are appropriate for quantitative analysis.
+        </p>
+
+        <h2>Problem Statements</h2>
+        <p>Below are the specific problem statements addressed by the various analyses, often corresponding to visual charts used in HR dashboards. You can  your chart images into the blank placeholders provided below.</p>
+
+        <h3>1. Attrition Analysis by Education Field (Donut Chart & Bar Chart)</h3>
+        <ul>
+            <li>**Problem Statement:** How does the distribution of employee attrition vary across different education fields, and which education fields contribute the most significant percentages and absolute numbers to overall attrition?</li>
+        </ul>
+        <div class="chart-placeholder">
+            <p> Chart 1: Attrition by Education Field (Donut/Bar Chart)</p>
+            <img src="../assets/Education.png" alt="Attrition Trends Across Educational Fields">
+        </div>
+
+        <h3>2. Attrition Analysis by Gender (Tree Map/Bar Chart)</h3>
+        <ul>
+            <li>**Problem Statement:** Is there a significant disparity in employee attrition rates between male and female employees, and which gender group accounts for a higher number of attritions?</li>
+        </ul>
+        <div class="chart-placeholder">
+            <p> Chart 2: Attrition by Gender Chart</p>
+            <img src="../assets/Gender.png" alt="Attrition Analysis by Gender">
+        </div>
+
+        <h3>3. Attrition Analysis by Monthly Income Group (Bar Chart)</h3>
+        <ul>
+            <li>**Problem Statement:** How does employee attrition correlate with different monthly income brackets, and which income groups experience the highest number of attritions?</li>
+        </ul>
+        <div class="chart-placeholder">
+            <p> Chart 3: Attrition by Monthly Income Chart</p>
+            <img src="../assets/Salary Slab.png">
+        </div>
+
+        <h3>4. Attrition Analysis by Age (Line Chart)</h3>
+        <ul>
+            <li>**Problem Statement:** What is the trend of employee attrition across different age groups, and are there specific age ranges where attrition is notably higher or lower?</li>
+        </ul>
+        <div class="chart-placeholder">
+            <p> Chart 4: Attrition by Age Chart</p>
+            <img src="../assets/Age Groups.png" alt="Attrition Analysis by Age Group">
+        </div>
+
+        <h3>5. Attrition Analysis by Job Role (Bar Chart)</h3>
+        <ul>
+            <li>**Problem Statement:** Which specific job roles within the organization are experiencing the highest numbers of employee attritions, and what are the attrition counts for each role?</li>
+        </ul>
+        <div class="chart-placeholder">
+            <p> Chart 5: Attrition by Job Role Chart</p>
+            <img src="../assets/Job Role.png" alt="Attrition by Job Role">
+        </div>
+
+    
+
+    
+
+        <h3>6. Attrition Analysis by Years at Company</h3>
+        <ul>
+            <li>**Problem Statement:** How does employee tenure (years at the company) impact attrition rates, identifying critical periods where employees are most likely to leave?</li>
+        </ul>
+        <div class="chart-placeholder">
+            <p> Chart 6: Attrition by Years at Company Chart</p>
+            <img src="../assets/Years.png" alt="Employee Attrition Trends Over Years of Service">
+        </div>
+
+        <h2>Recommendation & Insights</h2>
+        <p>This section details the findings from each analysis and provides specific insights and actionable recommendations.</p>
+
+        <h3>1. Attrition Analysis by Education Field</h3>
+        <div class="section-data">
+            <h4>Findings:</h4>
+            <ul>
+                <li>**Life Sciences:** 46.3%</li>
+                <li>**Medical:** 37.4%</li>
+                <li>**Technical Degree:** 9.7%</li>
+                <li>**Other:** 6.6%</li>
+            </ul>
+            <p><strong>Insight:</strong> Employees from 'Life Sciences' and 'Medical' education fields collectively represent a significant majority of all attritions. This indicates that these education backgrounds might be experiencing higher turnover, potentially due to external market demand or internal challenges.</p>
+            <p><strong>Recommendation:</strong> Investigate market competitiveness for these fields and assess internal growth opportunities or specific challenges faced by employees with these backgrounds.</p>
+        </div>
+
+        <h3>2. Attrition Analysis by Gender</h3>
+        <div class="section-data">
+            <h4>Findings:</h4>
+            <ul>
+                <li>**Male Attrition:** 240 employees</li>
+                <li>**Female Attrition:** 153 employees</li>
+            </ul>
+            <p><strong>Insight:</strong> Male employees account for a significantly higher number of attritions (240) compared to female employees (153). This disparity warrants further investigation.</p>
+            <p><strong>Recommendation:</strong> Conduct qualitative research (e.g., exit interviews, focus groups) to understand gender-specific factors contributing to attrition, such as career progression, work-life balance, or management support.</p>
+        </div>
+
+        <h3>3. Attrition Analysis by Monthly Income Group</h3>
+        <div class="section-data">
+            <h4>Findings:</h4>
+            <ul>
+                <li>**Upto 5k:** 274 attritions</li>
+                <li>**5k-10k:** 94 attritions</li>
+                <li>**10k-15k:** 21 attritions</li>
+                <li>**15k+:** 4 attritions</li>
+            </ul>
+            <p><strong>Insight:</strong> The "Upto 5k" monthly income group experiences the highest number of attritions by a significant margin. Attrition rates sharply decline as monthly income increases, strongly suggesting that lower compensation is a major factor in employee turnover.</p>
+            <p><strong>Recommendation:</strong> Prioritize a review of compensation structures for lower-income brackets to ensure competitive pay and reduce financial pressure as a driver of attrition.</p>
+        </div>
+
+        <h3>4. Attrition Analysis by Age</h3>
+        <div class="section-data">
+            <h4>Findings:</h4>
+            <p>Attrition is most concentrated in certain age groups. The highest numbers of attritions are observed around:</p>
+            <ul>
+                <li>**Age 35:** 52 attritions</li>
+                <li>**Age 34:** (approx 48-50 attritions)</li>
+                <li>**Age 29:** (approx 45 attritions)</li>
+                <li>**Age 31:** (approx 42 attritions)</li>
+                <li>**Age 32:** (approx 40 attritions)</li>
+                <li>**Age 30:** (approx 38 attritions)</li>
+                <li>**Age 33:** (approx 36 attritions)</li>
+                <li>**Age 27:** (approx 35 attritions)</li>
+                <li>**Age 28:** (approx 32 attritions)</li>
+                <li>**Age 26:** (approx 26 attritions)</li>
+            </ul>
+            <p>Attrition generally shows a decreasing trend with increasing age, with very few attritions occurring in employees above 45 years old.</p>
+            <p><strong>Insight:</strong> Employees in their mid-30s and late 20s are more prone to attrition. This demographic might be more mobile in the job market, seeking rapid career progression, or experiencing different work-life priorities not adequately addressed by the organization.</p>
+            <p><strong>Recommendation:</strong> Implement robust career development programs, mentorship opportunities, and flexible work arrangements tailored to the needs and aspirations of younger talent.</p>
+        </div>
+
+        <h3>5. Attrition Analysis by Job Role</h3>
+        <div class="section-data">
+            <h4>Findings:</h4>
+            <ul>
+                <li>**Research Scientist:** 154 attritions</li>
+                <li>**Laboratory Technician:** 122 attritions</li>
+                <li>**Manufacturing Director:** 54 attritions</li>
+                <li>**Healthcare Representative:** 44 attritions</li>
+                <li>**Research Director:** 13 attritions</li>
+                <li>**Manager:** 6 attritions</li>
+            </ul>
+            <p><strong>Insight:</strong> 'Research Scientists', 'Laboratory Technicians', and 'Manufacturing Directors' are the job roles with the highest number of attritions. These roles may face unique challenges, high market demand, or specific stressors.</p>
+            <p><strong>Recommendation:</strong> Develop targeted retention strategies for these high-attrition roles, including specialized training, clear career paths, workload management, and competitive compensation reviews specific to these functions.</p>
+        </div>
+
+       
+
+        <h3>8. Attrition Analysis by Years at Company</h3>
+        <div class="section-data">
+            <h4>Findings:</h4>
+            <p>Attrition trends over years of service are as follows:</p>
+            <ul>
+                <li>**1 Year:** 61 attritions</li>
+                <li>**2 Years:** 42 attritions</li>
+                <li>**3 Years:** 40 attritions</li>
+                <li>**4 Years:** 38 attritions</li>
+                <li>**5 Years:** 32 attritions</li>
+                <li>**6 Years:** 28 attritions</li>
+                <li>**7 Years:** 27 attritions</li>
+                <li>**8 Years:** 26 attritions</li>
+                <li>**9 Years:** 24 attritions</li>
+                <li>**10 Years:** 13 attritions</li>
+                <li>**11 Years:** 8 attritions</li>
+                <li>**12 Years:** 7 attritions</li>
+                <li>**13 Years:** 6 attritions</li>
+                <li>**14 Years:** 4 attritions</li>
+                <li>**15 Years:** 4 attritions</li>
+                <li>**16 Years:** 2 attritions</li>
+                <li>**17 Years:** 4 attritions</li>
+                <li>**18 Years:** 2 attritions</li>
+                <li>**19 Years:** 2 attritions</li>
+                <li>**20 Years:** 1 attrition</li>
+                <li>**21 Years:** 1 attrition</li>
+                <li>**22 Years:** 1 attrition</li>
+                <li>**23 Years:** 1 attrition</li>
+                <li>**24 Years:** 1 attrition</li>
+                <li>**25 Years:** 1 attrition</li>
+            </ul>
+            <p><strong>Insight:</strong> A substantial majority of attritions occur within the first few years of employment, with the highest attrition at 1 year of service. Attrition significantly decreases after the initial years of service.</p>
+            <p><strong>Recommendation:</strong> Focus heavily on enhancing the onboarding experience and providing clear career progression paths and support during the initial years of employment. For long-tenured employees, explore succession planning and flexible transition options.</p>
+        </div>
+
+        <h2>Conclusion</h2>
+        <p>
+            This HR Attrition Analytics Report provides a data-driven foundation for understanding and addressing employee turnover within the organization. By identifying key demographic, financial, and experiential factors contributing to attrition, HR and leadership can develop targeted, evidence-based strategies. The insights underscore the importance of competitive compensation, robust career development, and a holistic approach to employee well-being beyond traditional satisfaction metrics. Proactive intervention based on these findings will be crucial for fostering a more stable, engaged, and productive workforce.
+        </p>
+
+        <div class="conclusion">
+            <p>End of Report</p>
+        </div>
+    </div>
+</body>
+</html>
