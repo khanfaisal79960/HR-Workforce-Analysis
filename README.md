@@ -70,16 +70,9 @@ cd HR-Workforce-Analysis</code></pre>
 
 <hr>
 
-<h2>📬 Contact</h2>
 
-<p>If you found this project helpful or have any questions, feel free to connect:</p>
 
-<ul>
-  <li><strong>Portfolio:</strong> <a href="https://khanfaisal.netlify.app" target="_blank">khanfaisal.netlify.app</a></li>
-  <li><strong>GitHub:</strong> <a href="https://github.com/khanfaisal79960" target="_blank">@khanfaisal79960</a></li>
-  <li><strong>Email:</strong> <a href="mailto:khanfaisal79960@gmail.com">khanfaisal79960@gmail.com</a></li>
-  <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/khanfaisal79960" target="_blank">Khan Faisal</a></li>
-</ul>
+
 
 <hr>
 
