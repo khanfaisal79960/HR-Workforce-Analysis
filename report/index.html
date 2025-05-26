@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Attrition Analytics Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS from the previous design for vibrant colors, animations, and unique designs */
+        :root {
+            --primary-color: #6a0dad; /* Deep Purple */
+            --secondary-color: #ff6f61; /* Coral */
+            --accent-color: #00bcd4; /* Cyan */
+            --background-light: #f8f9fa;
+            --background-dark: #212529;
+            --text-light: #343a40;
+            --text-dark: #e9ecef;
+            --gradient-bg: linear-gradient(45deg, #6a0dad, #ff6f61);
+            --card-bg: #ffffff;
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        div {
+            overflow: hidden;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        .navbar {
+            background: var(--gradient-bg);
+            box-shadow: var(--card-shadow);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding: 1rem 0;
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .hero-section {
+            background: var(--gradient-bg);
+            color: var(--text-dark);
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--card-bg);
+            margin-bottom: 30px;
+            overflow: hidden; /* Ensures rounded corners apply to content */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 15px 20px;
+        }
+
+        .dashboard-embed, .report-content {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            margin-bottom: 40px;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .dashboard-embed iframe {
+            width: 100%;
+            height: 600px; /* Adjust height as needed */
+            border: none;
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-point {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .data-point:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .data-point h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .data-point p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .placeholder-chart {
+            height: 300px; /* Adjusted from original to match template's placeholder height */
+            background-color: #e9ecef;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column; /* Changed to column for text underneath icon */
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .placeholder-chart i {
+            margin-bottom: 10px; /* Spacing for icon and text */
+        }
+
+
+        .footer {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+            padding: 40px 0;
+            text-align: center;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            margin-top: 40px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .dashboard-embed iframe {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-users-cog me-2"></i> HR Attrition Analytics
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#report">Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#insights">Insights</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <h1>HR Attrition Analytics Report</h1>
+            <p class="lead">Comprehensive analysis of employee turnover to drive targeted retention strategies.</p>
+            <p class="lead-small"><strong>Date:</strong> May 25, 2025 | <strong>Prepared by:</strong> Khan Faisal</p>
+            <a href="#report" class="btn btn-primary-custom">Read Full Report <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+    </section>
+
+    <main class="container my-5">
+
+        <section id="overview" class="mb-5">
+            <h2 class="section-title">Executive Summary</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="data-point">
+                        <i class="fas fa-users-slash fa-2x mb-2"></i>
+                        <h3>393</h3>
+                        <p>Total Attritions Identified</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="data-point">
+                        <i class="fas fa-percentage fa-2x mb-2"></i>
+                        <h3>16.2%</h3>
+                        <p>Overall Attrition Rate</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="data-point">
+                        <i class="fas fa-briefcase fa-2x mb-2"></i>
+                        <h3>6</h3>
+                        <p>Key Attrition Drivers</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-4">
+                <p>This report provides a comprehensive analysis of employee attrition within the organization, leveraging the HR Analytics dataset. The primary goal is to identify key drivers of attrition, understand underlying patterns, and propose actionable strategies for retention. Our findings indicate that attrition is significantly influenced by factors such as lower monthly income, shorter tenure, specific job roles and education fields, and demographic attributes like age, gender, and marital status. Notably, even employees reporting high job satisfaction are attriting, suggesting a need for a holistic review of employee experience beyond satisfaction scores.</p>
+                <h5>Key Findings:</h5>
+                <ul>
+                    <li><strong>Income & Tenure:</strong> The "Upto $5,000" monthly income group and employees with shorter tenure experience the highest attrition rates.</li>
+                    <li><strong>Demographics:</strong> Younger employees (late 20s to early 30s), male employees, and single employees show higher propensity for attrition.</li>
+                    <li><strong>Role & Education:</strong> Research Scientists, Laboratory Technicians, Manufacturing Directors, and individuals from Life Sciences and Medical education backgrounds have elevated attrition figures.</li>
+                    <li><strong>Job Satisfaction Paradox:</strong> A significant number of attritions occur even among employees with "High" job satisfaction, indicating that satisfaction alone is not a complete predictor of retention.</li>
+                </ul>
+                <h5>Recommendations:</h5>
+                <ul>
+                    <li>Implement targeted compensation reviews and enhanced early-career development programs.</li>
+                    <li>Develop specific retention strategies for high-attrition roles and education fields.</li>
+                    <li>Conduct deeper qualitative research into gender-specific and marital status-related attrition factors.</li>
+                    <li>Investigate non-satisfaction drivers of attrition to create a more comprehensive employee experience strategy.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="dashboard" class="mb-5">
+            <h2 class="section-title">Interactive Dashboard</h2>
+            <div class="dashboard-embed">
+                <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/23acea98-5f36-49f9-a1a8-7803f756234e/page/g6lLF" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+                <div class="text-center mt-3 text-muted">
+                    <small>This dashboard provides interactive views of the bank loan data.</small>
+                </div>
+            </div>
+        </section>
+
+        <section id="report" class="mb-5">
+            <h2 class="section-title">Detailed Analysis Report</h2>
+            <div class="report-content">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-info-circle me-2"></i> Introduction
+                    </div>
+                    <div class="card-body">
+                        <h5>Objective of the Report</h5>
+                        <p>The objective of this report is to conduct an in-depth analysis of employee attrition using the provided HR dataset. By identifying the primary drivers and patterns of attrition, this report aims to furnish Human Resources and management with data-driven insights necessary for developing effective retention strategies, improving employee engagement, and fostering a stable workforce.</p>
+                        <h5>Background / Context</h5>
+                        <p>Employee attrition poses significant challenges to organizations, including increased recruitment costs, loss of institutional knowledge, and potential impacts on team morale and productivity. Understanding the root causes of why employees leave is crucial for proactive HR management. This report serves as a foundational step in building a robust HR analytics capability focused on talent retention.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-database me-2"></i> Data Overview
+                    </div>
+                    <div class="card-body">
+                        <h5>Data Sources</h5>
+                        <p>The analysis presented in this report is based on the <code>HR_Analytics.csv</code> dataset provided.</p>
+                        <h5>Data Collection Methods</h5>
+                        <p>The dataset was provided as a pre-collected CSV file. The specific methods used for the original data collection are assumed to be standard HR data gathering practices within an organizational context.</p>
+                        <h5>Data Cleaning and Preparation</h5>
+                        <p>For the purpose of this analysis, it is assumed that the provided <code>HR_Analytics.csv</code> dataset has undergone initial data cleaning and preparation, ensuring data integrity and readiness for analytical processing. This includes handling missing values, standardizing formats, and ensuring data types are appropriate for quantitative analysis.</p>
+                    </div>
+                </div>
+
+                <h3 class="mt-4 mb-3 text-center" style="color: var(--primary-color);">Problem Statements & Visualizations</h3>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie me-2"></i> 1. Attrition Analysis by Education Field
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Problem Statement:</strong> How does the distribution of employee attrition vary across different education fields, and which education fields contribute the most significant percentages and absolute numbers to overall attrition?</p>
+                        <div class="placeholder-chart">
+                            <img src="../assets/Education.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-venus-mars me-2"></i> 2. Attrition Analysis by Gender
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Problem Statement:</strong> Is there a significant disparity in employee attrition rates between male and female employees, and which gender group accounts for a higher number of attritions?</p>
+                        <div class="placeholder-chart">
+                            <img src="../assets/Gender.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-money-bill-wave me-2"></i> 3. Attrition Analysis by Monthly Income Group
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Problem Statement:</strong> How does employee attrition correlate with different monthly income brackets, and which income groups experience the highest number of attritions?</p>
+                        <div class="placeholder-chart">
+                           <img src="../assets/Salary Slab.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-user-friends me-2"></i> 4. Attrition Analysis by Age
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Problem Statement:</strong> What is the trend of employee attrition across different age groups, and are there specific age ranges where attrition is notably higher or lower?</p>
+                        <div class="placeholder-chart">
+                            <img src="../assets/Age Groups.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-user-tie me-2"></i> 5. Attrition Analysis by Job Role
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Problem Statement:</strong> Which specific job roles within the organization are experiencing the highest numbers of employee attritions, and what are the attrition counts for each role?</p>
+                        <div class="placeholder-chart">
+                            <img src="../assets/Job Role.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-clock me-2"></i> 6. Attrition Analysis by Years at Company
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Problem Statement:</strong> How does employee tenure (years at the company) impact attrition rates, identifying critical periods where employees are most likely to leave?</p>
+                        <div class="placeholder-chart">
+                            <img src="../assets/Years.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="insights" class="mb-5">
+            <h2 class="section-title">Recommendation & Insights</h2>
+            <div class="report-content">
+                <div class="card mb-4">
+                    <div class="card-header bg-accent text-white">
+                        <i class="fas fa-lightbulb me-2"></i> Attrition Analysis by Education Field
+                    </div>
+                    <div class="card-body">
+                        <h5>Findings:</h5>
+                        <ul>
+                            <li><strong>Life Sciences:</strong> 46.3%</li>
+                            <li><strong>Medical:</strong> 37.4%</li>
+                            <li><strong>Technical Degree:</strong> 9.7%</li>
+                            <li><strong>Other:</strong> 6.6%</li>
+                        </ul>
+                        <p><strong>Insight:</strong> Employees from 'Life Sciences' and 'Medical' education fields collectively represent a significant majority of all attritions. This indicates that these education backgrounds might be experiencing higher turnover, potentially due to external market demand or internal challenges.</p>
+                        <p><strong>Recommendation:</strong> Investigate market competitiveness for these fields and assess internal growth opportunities or specific challenges faced by employees with these backgrounds.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-accent text-white">
+                        <i class="fas fa-lightbulb me-2"></i> Attrition Analysis by Gender
+                    </div>
+                    <div class="card-body">
+                        <h5>Findings:</h5>
+                        <ul>
+                            <li><strong>Male Attrition:</strong> 240 employees</li>
+                            <li><strong>Female Attrition:</strong> 153 employees</li>
+                        </ul>
+                        <p><strong>Insight:</strong> Male employees account for a significantly higher number of attritions (240) compared to female employees (153). This disparity warrants further investigation.</p>
+                        <p><strong>Recommendation:</strong> Conduct qualitative research (e.g., exit interviews, focus groups) to understand gender-specific factors contributing to attrition, such as career progression, work-life balance, or management support.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-accent text-white">
+                        <i class="fas fa-lightbulb me-2"></i> Attrition Analysis by Monthly Income Group
+                    </div>
+                    <div class="card-body">
+                        <h5>Findings:</h5>
+                        <ul>
+                            <li><strong>Upto 5k:</strong> 274 attritions</li>
+                            <li><strong>5k-10k:</strong> 94 attritions</li>
+                            <li><strong>10k-15k:</strong> 21 attritions</li>
+                            <li><strong>15k+:</strong> 4 attritions</li>
+                        </ul>
+                        <p><strong>Insight:</strong> The "Upto 5k" monthly income group experiences the highest number of attritions by a significant margin. Attrition rates sharply decline as monthly income increases, strongly suggesting that lower compensation is a major factor in employee turnover.</p>
+                        <p><strong>Recommendation:</strong> Prioritize a review of compensation structures for lower-income brackets to ensure competitive pay and reduce financial pressure as a driver of attrition.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-accent text-white">
+                        <i class="fas fa-lightbulb me-2"></i> Attrition Analysis by Age
+                    </div>
+                    <div class="card-body">
+                        <h5>Findings:</h5>
+                        <p>Attrition is most concentrated in certain age groups. The highest numbers of attritions are observed around:</p>
+                        <ul>
+                            <li><strong>Age 35:</strong> 52 attritions</li>
+                            <li><strong>Age 34:</strong> (approx 48-50 attritions)</li>
+                            <li><strong>Age 29:</strong> (approx 45 attritions)</li>
+                            <li><strong>Age 31:</strong> (approx 42 attritions)</li>
+                            <li><strong>Age 32:</strong> (approx 40 attritions)</li>
+                            <li><strong>Age 30:</strong> (approx 38 attritions)</li>
+                            <li><strong>Age 33:</strong> (approx 36 attritions)</li>
+                            <li><strong>Age 27:</strong> (approx 35 attritions)</li>
+                            <li><strong>Age 28:</strong> (approx 32 attritions)</li>
+                            <li><strong>Age 26:</strong> (approx 26 attritions)</li>
+                        </ul>
+                        <p>Attrition generally shows a decreasing trend with increasing age, with very few attritions occurring in employees above 45 years old.</p>
+                        <p><strong>Insight:</strong> Employees in their mid-30s and late 20s are more prone to attrition. This demographic might be more mobile in the job market, seeking rapid career progression, or experiencing different work-life priorities not adequately addressed by the organization.</p>
+                        <p><strong>Recommendation:</strong> Implement robust career development programs, mentorship opportunities, and flexible work arrangements tailored to the needs and aspirations of younger talent.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-accent text-white">
+                        <i class="fas fa-lightbulb me-2"></i> Attrition Analysis by Job Role
+                    </div>
+                    <div class="card-body">
+                        <h5>Findings:</h5>
+                        <ul>
+                            <li><strong>Research Scientist:</strong> 154 attritions</li>
+                            <li><strong>Laboratory Technician:</strong> 122 attritions</li>
+                            <li><strong>Manufacturing Director:</strong> 54 attritions</li>
+                            <li><strong>Healthcare Representative:</strong> 44 attritions</li>
+                            <li><strong>Research Director:</strong> 13 attritions</li>
+                            <li><strong>Manager:</strong> 6 attritions</li>
+                        </ul>
+                        <p><strong>Insight:</strong> 'Research Scientists', 'Laboratory Technicians', and 'Manufacturing Directors' are the job roles with the highest number of attritions. These roles may face unique challenges, high market demand, or specific stressors.</p>
+                        <p><strong>Recommendation:</strong> Develop targeted retention strategies for these high-attrition roles, including specialized training, clear career paths, workload management, and competitive compensation reviews specific to these functions.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-accent text-white">
+                        <i class="fas fa-lightbulb me-2"></i> Attrition Analysis by Years at Company
+                    </div>
+                    <div class="card-body">
+                        <h5>Findings:</h5>
+                        <p>Attrition trends over years of service are as follows:</p>
+                        <ul>
+                            <li><strong>1 Year:</strong> 61 attritions</li>
+                            <li><strong>2 Years:</strong> 42 attritions</li>
+                            <li><strong>3 Years:</strong> 40 attritions</li>
+                            <li><strong>4 Years:</strong> 38 attritions</li>
+                            <li><strong>5 Years:</strong> 32 attritions</li>
+                            <li><strong>6 Years:</strong> 28 attritions</li>
+                            <li><strong>7 Years:</strong> 27 attritions</li>
+                            <li><strong>8 Years:</strong> 26 attritions</li>
+                            <li><strong>9 Years:</strong> 24 attritions</li>
+                            <li><strong>10 Years:</strong> 13 attritions</li>
+                            <li><strong>11 Years:</strong> 8 attritions</li>
+                            <li><strong>12 Years:</strong> 7 attritions</li>
+                            <li><strong>13 Years:</strong> 6 attritions</li>
+                            <li><strong>14 Years:</strong> 4 attritions</li>
+                            <li><strong>15 Years:</strong> 4 attritions</li>
+                            <li><strong>16 Years:</strong> 2 attritions</li>
+                            <li><strong>17 Years:</strong> 4 attritions</li>
+                            <li><strong>18 Years:</strong> 2 attritions</li>
+                            <li><strong>19 Years:</strong> 2 attritions</li>
+                            <li><strong>20 Years:</strong> 1 attrition</li>
+                            <li><strong>21 Years:</strong> 1 attrition</li>
+                            <li><strong>22 Years:</strong> 1 attrition</li>
+                            <li><strong>23 Years:</strong> 1 attrition</li>
+                            <li><strong>24 Years:</strong> 1 attrition</li>
+                            <li><strong>25 Years:</strong> 1 attrition</li>
+                        </ul>
+                        <p><strong>Insight:</strong> A substantial majority of attritions occur within the first few years of employment, with the highest attrition at 1 year of service. Attrition significantly decreases after the initial years of service.</p>
+                        <p><strong>Recommendation:</strong> Focus heavily on enhancing the onboarding experience and providing clear career progression paths and support during the initial years of employment. For long-tenured employees, explore succession planning and flexible transition options.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="mb-5">
+            <h2 class="section-title">Conclusion</h2>
+            <div class="report-content">
+                <p>This HR Attrition Analytics Report provides a data-driven foundation for understanding and addressing employee turnover within the organization. By identifying key demographic, financial, and experiential factors contributing to attrition, HR and leadership can develop targeted, evidence-based strategies. The insights underscore the importance of competitive compensation, robust career development, and a holistic approach to employee well-being beyond traditional satisfaction metrics. Proactive intervention based on these findings will be crucial for fostering a more stable, engaged, and productive workforce.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Prepared by Khan Faisal</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
