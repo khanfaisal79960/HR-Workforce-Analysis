@@ -27,9 +27,9 @@
  - **📤 Exportable Reports:** Includes PDF and HTML formats for presentations and sharing.
  - **💡 Actionable Insights:** Designed to help stakeholders make informed HR decisions and improve workforce management.
 
- ---
+## 📁 Project Structure
 
- ## 📁 Project Structure
+```
 │   README.md
 │
 ├───assets
@@ -57,9 +57,8 @@
         analytical_dashboard.pdf
         hrnalytics_comprehensive_report.pdf
         index.html
+```
 
-
----
 
 ## 🧪 Setup & Usage
 
