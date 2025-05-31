@@ -1,75 +1,109 @@
-<h1 align="center" id="title">📊 HR Workforce Analysis</h1>
+# 📊 HR Workforce Analytics Project
 
-<p align="center">
-  <img src="https://socialify.git.ci/khanfaisal79960/HR-Workforce-Analysis/image?language=1&amp;name=1&amp;owner=1&amp;theme=Dark" alt="project-image">
-</p>
+ **"An insightful dashboard analyzing HR workforce patterns and employee behavior."**
 
-<p align="center" id="description">
-  A comprehensive project designed to analyze workforce data and uncover actionable HR insights. The objective is to empower organizations with data-driven strategies for workforce planning, talent management, and improved HR decision-making. Utilizing data analytics and visualization tools, this project explores trends in employee demographics, attrition, hiring, performance, satisfaction levels, and more. Through Exploratory Data Analysis (EDA), KPIs, and interactive dashboards, HR professionals gain clarity on crucial metrics like turnover rates, departmental distributions, experience levels, and promotion cycles.
-</p>
+ **HR Workforce Analytics** is an interactive analytics project built using **Power BI** and real-world HR data. The dashboard and accompanying reports offer clear visualizations of key insights in employee trends, departmental performance, and workforce demographics. It's designed for HR professionals, analysts, and business leaders to quickly grasp complex workforce data.
 
-<hr>
+ ---
 
-<h2>🚀 Live Demo</h2>
+ ## 🌐 View Live Project
 
-<p>
-  🔗 <a href="https://lookerstudio.google.com/s/nkqN94ja7i0" target="_blank">Click here to view the interactive dashboard in Looker Studio</a>
-</p>
-<p>
-  🔗 <a href="https://hr-workforce-analysis.netlify.app" target="_blank">Click here to view the the live project</a>
-</p>
-<hr>
+ 👉 [HR Workforce Analytics Live](https://hr-workforce-analysis.netlify.app/)
 
-<h2>📸 Project Screenshots</h2>
+ ---
 
-<img src="assets/dashboard.png" alt="Dashboard View" width="500" height="300"/>
-<br><br>
-<img src="assets/preview.png" alt="Data Overview" width="500" height="300"/>
-<br><br>
-<img src="assets/sales.png" alt="Sales Insights" width="500" height="300"/>
+ ## 🖼️ Cover Page
 
-<hr>
+ ![Cover Image](./assets/cover_image.png)
 
-<h2>🧐 Features</h2>
+ ---
 
-<ul>
-  <li>✅ <strong>Data Cleaning & Preprocessing</strong></li>
-  <li>📊 <strong>Exploratory Data Analysis (EDA)</strong></li>
-  <li>🧠 <strong>Risk Factor Identification</strong></li>
-  <li>🧾 <strong>Segmentation of Applicants</strong></li>
-  <li>📈 <strong>Interactive Visualizations and Dashboards</strong></li>
-  <li>🔍 <strong>Summary of Actionable Insights</strong></li>
-  <li>📌 <strong>HR KPIs like Turnover, Promotion Trends, etc.</strong></li>
-</ul>
+ ## ✨ Features
 
-<hr>
+ - **📊 Visual Storytelling:** Understand trends in employee demographics, performance, and satisfaction.
+ - **📌 Detailed Dashboards:** Summary, overview, and deep-dive views powered by Power BI.
+ - **📈 Departmental Insights:** Analyze performance and trends across various departments.
+ - **🌍 Demographic Breakdown:** Visualize insights by age groups, gender, education, and job roles.
+ - **📤 Exportable Reports:** Includes PDF and HTML formats for presentations and sharing.
+ - **💡 Actionable Insights:** Designed to help stakeholders make informed HR decisions and improve workforce management.
 
-<h2>🛠️ Installation & Usage</h2>
+ ---
 
-<ol>
-  <li><strong>Clone the Repository</strong>
-    <pre><code>git clone khanfaisal79960/HR-Workforce-Analysis
-cd HR-Workforce-Analysis</code></pre>
-  </li>
-  <li><strong>Install Power BI</strong><br>
-    Download and install <a href="https://powerbi.microsoft.com/desktop/" target="_blank">Power BI Desktop</a> if you haven't already.
-  </li>
-  <li><strong>Open the Report</strong><br>
-    Open the <code>analysis/hranalytics_insights_dashboard.pbix</code> file using Power BI to explore the report offline.
-  </li>
-</ol>
+ ## 📁 Project Structure
+│   README.md
+│
+├───assets
+│       Age Groups.png
+│       background-bluee.jpg
+│       cover_image.png
+│       dashboard.png
+│       Education.png
+│       favicon.png
+│       Gender.png
+│       Job Role.png
+│       preview.png
+│       R&D.png
+│       Salary Slab.png
+│       sales.png
+│       Years.png
+│
+├───data
+│       HR_Analytics.csv
+│
+├───powerBI
+│       hranalytics_insights_dashboard.pbix
+│
+└───report
+        analytical_dashboard.pdf
+        hrnalytics_comprehensive_report.pdf
+        index.html
 
-<hr>
 
-<h2>💻 Built With</h2>
+---
 
-<ul>
-  <li>📊 <strong>Power BI</strong> – for creating interactive dashboards</li>
-  <li>📈 <strong>Google Data Studio (Looker Studio)</strong> – for web-based visualizations</li>
-  <li>📋 <strong>Advanced Excel</strong> – for initial data preprocessing</li>
-  <li>🔢 <strong>DAX</strong> – for data modeling and KPIs in Power BI</li>
-</ul>
+## 🧪 Setup & Usage
 
-<hr>
+1. **Open Power BI File:**
 
-<p align="center">⭐️ If you like this project, consider giving it a star on GitHub!</p>
+   Open `powerBI/hranalytics_insights_dashboard.pbix` with [Power BI Desktop](https://powerbi.microsoft.com/desktop).
+
+2. **Explore Dataset:**
+
+   Raw dataset used: `data/HR_Analytics.csv`.
+
+3. **View Reports:**
+
+   - 📄 PDF: `report/hrnalytics_comprehensive_report.pdf`
+   - 🌐 HTML Summary: `report/index.html`
+
+---
+
+## 📷 Screenshots
+
+### 🔹 HR Analytics Dashboard
+![HR Analytics Dashboard](./assets/dashboard.png)
+
+### 🔹 Overview Dashboard
+![Overview Dashboard](./assets/preview.png)
+
+### 🔹 R&D Department Insights
+![R&D Department Insights](./assets/R&D.png)
+
+### 🔹 Sales Department Insights
+![Sales Department Insights](./assets/sales.png)
+
+---
+
+## 👨‍💻 Developer
+
+**Faisal Khan**
+
+- 🌐 [Portfolio](https://khanfaisal.netlify.app)
+- 💻 [GitHub](https://github.com/khanfaisal79960)
+- 🔗 [LinkedIn](https://www.linkedin.com/in/khanfaisal79960)
+- ✍️ [Medium](https://medium.com/@khanfaisal79960)
+- 📷 [Instagram](https://instagram.com/mr._perfect_1004)
+
+---
+
+> Crafted with 📊 by Faisal Khan.
